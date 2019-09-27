@@ -1,0 +1,86 @@
+{
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "runtime": {
+                    "type": "docker",
+                    "settings": {
+                        "loggingOptions": "",
+                        "minDockerVersion": "v1.25",
+                        "registryCredentials": {
+                            "amlregistry": {
+                                "address": "__REGISTRY_SERVER_NAME",
+                                "password": "__REGISTRY_PASSWORD",
+                                "username": "__REGISTRY_USER_NAME"
+                            }
+                        }
+                    }
+                },
+                "systemModules": {
+                    "edgeAgent": {
+                        "type": "docker",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+                            "createOptions": ""
+                        }
+                    },
+                    "edgeHub": {
+                        "type": "docker",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+                            "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"8883/tcp\":[{\"HostPort\":\"8883\"}],\"443/tcp\":[{\"HostPort\":\"443\"}],\"5671/tcp\":[{\"HostPort\":\"5671\"}]}}}"
+                        },
+                        "status": "running",
+                        "restartPolicy": "always"
+                    }
+                },
+                "modules": {
+                    "__MODULE1_NAME": {
+                            "version": "1.0",
+                            "type": "docker",
+                            "status": "running",
+                            "restartPolicy": "always",
+                            "env": {
+                              "VIDEO_PATH": { "value": "./inputimages.mp4"},
+                              "IMAGE_PROCESSING_ENDPOINT": { "value": "http://__MODULE2_NAME:80/image"},
+                              "VERBOSE": { "value": "True"},
+                              "RESIZE_WIDTH": { "value": "256"},
+                              "RESIZE_HEIGHT": { "value": "256"},
+                              "SHOW_VIDEO": { "value": "True"},
+                              "ANNOTATE": { "value": "True"}
+                            },
+                            "settings": {
+                              "image": "__REGISTRY_IMAGE1_LOCATION",
+                              "createOptions": "{\"HostConfig\": {\"PortBindings\": {\"5012/tcp\": [ { \"HostPort\":\"5012\"}]}}}"
+                        }
+                      },
+                    "__MODULE2_NAME": {
+                        "type": "docker",
+                        "settings": {
+                            "image": "__REGISTRY_IMAGE2_LOCATION",
+                            "createOptions": "{\"HostConfig\": {\"PortBindings\": {\"80/tcp\": [ { \"HostPort\":\"80\"}]}}}"
+                        },
+                        "version": "1.0",
+                        "status": "running",
+                        "restartPolicy": "always"
+                    }
+                }
+            }
+        },
+        "$edgeHub": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "routes": {
+                    "route": "FROM /messages/* INTO $upstream"
+                },
+                "storeAndForwardConfiguration": {
+                    "timeToLiveSecs": 7200
+                }
+            }
+        },
+        "__MODULE2_NAME": {
+            "properties.desired": {}
+        }
+    }
+}

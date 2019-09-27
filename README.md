@@ -17,21 +17,20 @@ Guidance on onboarding samples to docs.microsoft.com/samples: https://review.doc
 
 Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
 -->
+# Deploy Machine Learning Models on Azure IoT Edge
 
-Give a short description for your sample here. What does it do and why is it important?
+This repository contains examples and best practices for deploying machine learning models on Azure IoT Edge, provided as Jupyter notebooks. The examples detail our learnings on two key qustions: where the model is built and what is the IoT Edge device for deployment. 
 
-## Contents
 
-Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
+The table below lists the recommender algorithms currently available in the repository. Notebooks are linked under the Environment column when different implementations are available.
 
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
-| `.gitignore`      | Define what to ignore at commit time.      |
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md`       | This README file.                          |
-| `LICENSE`         | The license for the sample.                |
+| Task | Model Built Environment | IoT Edge Device | Description | 
+| --- | --- | --- | --- |
+| Object Detection | Azure Machine Learning | Ubuntu VM | Pytorch, pretrained MaskRCNN model | 
+| Object Detection | Azure Custom Vision service | Ubuntu VM | Tensorflow, pretrained model, fine-tuned with 50 custom images| 
+| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images | 
+
+
 
 ## Prerequisites
 

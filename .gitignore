@@ -328,3 +328,11 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# notebook checkpoints
+.ipynb_checkpoints/
+
+.env
+
+.dev_env
+
