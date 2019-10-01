@@ -11,10 +11,7 @@ Workflow| Task | Model Built Environment | IoT Edge Device | Description | Notes
 [wf2](./object-detection-acv)| Object Detection | Azure Custom Vision service | [Ubuntu VM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro) | Tensorflow, pretrained model, fine-tuned with 50 custom images| |
 [wf3](./object-detection-acv-dbe)| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images |Make sure p2 works first then try wf2 with the same model.|
 
-The notebooks in each workflow directory is organized with six steps, which are illustrated in following digram.  
-![workflow diagram](./workflow_diagram.png). 
-
-We perform following steps for each ML model deployment scenario. The naming of the notebooks starts with `01`,`02`,`03`, ..., which match these steps. In some senario more than one notebooks are needed, we apply another level of numbers. For example, we use `031`,`032`,`033`... to represent the sub-steps of Step 3. 
+The notebooks in each workflow directory is organized with six steps, which are illustrated in following digram. We perform following steps for each ML model deployment scenario. The naming of the notebooks starts with `01`,`02`,`03`, ..., which match these steps. In some senario more than one notebooks are needed, we apply another level of numbers. For example, we use `031`,`032`,`033`... to represent the sub-steps of Step 3. As shown in the diagram, `Step 2.5` is special. It set up the association between the IoT Edge device identity (Step 1) and the actualy edge device (Step 2). For the sake of convenience, we incnlude this important step in Step 2. 
 
 - Step 1: Create Azure Resources
 - Step 2: Configure Edge Device
@@ -22,6 +19,8 @@ We perform following steps for each ML model deployment scenario. The naming of 
 - Step 4: Deploy ML model on IoT Edge
 - Step 5: Test ML module
 - Step 6: Tear down resources
+
+![workflow diagram](./workflow_diagram.png). 
 
 ## Prerequisites
 
@@ -77,9 +76,9 @@ Please follow these steps to set up your environment and run notebooks.  They se
 
 
 ## Reference
-[Azure Machine Learning service](https://docs.microsoft.com/en-us/azure/machine-learning/service/overview-what-is-azure-ml)
-[Azure Custom Vision service](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home)
-[Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+- [Azure Machine Learning service](https://docs.microsoft.com/en-us/azure/machine-learning/service/overview-what-is-azure-ml)
+- [Azure Custom Vision service](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home)
+- [Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
 
 
 
