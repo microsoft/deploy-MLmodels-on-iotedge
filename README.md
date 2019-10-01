@@ -57,7 +57,7 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
 ```python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
-
+```
 6. Login to Azure:
    ```
    az login
@@ -70,9 +70,9 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
    jupyter notebook
    ```
-9. Select correct kernel: set the kernel to be *Python [conda env: deployment_env]*(or *Python 3* if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
 
-10. After following the setup instructions above, run the Jupyter notebooks in the order of 01,02,03... in the chosen workflow.
+10. After following the setup instructions above, run the Jupyter notebooks in the order of `01`,`02`,`03`... in the chosen workflow.
 
 
 
