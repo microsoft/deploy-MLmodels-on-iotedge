@@ -1,52 +1,81 @@
----
-page_type: sample
-languages:
-- csharp
-products:
-- dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
----
-
-# Official Microsoft Sample
-
-<!-- 
-Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
-
-Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
-
-Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
--->
 # Deploy Machine Learning Models on Azure IoT Edge
 
-This repository contains examples and best practices for deploying machine learning models on Azure IoT Edge, provided as Jupyter notebooks. The examples detail our learnings on two key qustions: where the model is built and what is the IoT Edge device for deployment. 
+This repository contains examples and best practices for deploying machine learning (ML) models on Azure IoT Edge, provided as Jupyter notebooks. 
 
 
-The table below lists the recommender algorithms currently available in the repository. Notebooks are linked under the Environment column when different implementations are available.
+The table below lists the workflow options currently available in the repository. The examples detail our learnings on two key qustions: where the model is built and what is the IoT Edge device for deployment. Notebooks are linked under the `Workflow` column when different implementations are available.
 
-| Task | Model Built Environment | IoT Edge Device | Description | 
-| --- | --- | --- | --- |
-| Object Detection | Azure Machine Learning | Ubuntu VM | Pytorch, pretrained MaskRCNN model | 
-| Object Detection | Azure Custom Vision service | Ubuntu VM | Tensorflow, pretrained model, fine-tuned with 50 custom images| 
-| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images | 
+Workflow| Task | Model Built Environment | IoT Edge Device | Description | Notes|
+| --- | --- | --- | --- | --- | --- |
+[wf1](./object-detection-azureml)| Object Detection | Azure Machine Learning | Ubuntu VM | Pytorch, pretrained MaskRCNN model | |
+[wf2](./object-detection-acv)| Object Detection | Azure Custom Vision service | Ubuntu VM | Tensorflow, pretrained model, fine-tuned with 50 custom images| |
+[wf3](./object-detection-acv-dbe)| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images |Make sure p2 works first then try p3 with the same model.|
 
+The notebooks in each workflow directory is organized with six steps, which are illustrated in following digram.  
+![workflow diagram](./workflow_diagram.png). 
 
+We perform following steps for each ML model deployment scenario. The naming of the notebooks starts with `01`,`02`,`03`, ..., which match these steps. In some senario more than one notebooks are needed, we apply another level of numbers. For example, we use `031`,`032`,`033`... to represent the sub-steps of Step 3. 
+
+- Step 1: Create Azure Resources
+- Step 2: Configure Edge Device
+- Step 3: Build ML model into docker image
+- Step 4: Deploy ML model on IoT Edge
+- Step 5: Test ML module
+- Step 6: Tear down resources
 
 ## Prerequisites
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+1. Linux (x64) 
+2. [Anaconda Python](https://www.anaconda.com/download)
+3. [Docker](https://docs.docker.com/v17.12/install/linux/docker-ee/ubuntu) installed
+4. [Azure account](https://azure.microsoft.com)
+
+The tutorial was developed on an [Azure Ubuntu
+DSVM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro),
+which addresses the first three prerequisites.
 
 ## Setup
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
+Please follow these steps to set up your environment and run notebooks.  They setup the notebooks to use Docker and Azure seamlessly.
 
-## Runnning the sample
+1. Add your user to the docker group: 
+   ```
+   sudo usermod -aG docker $USER
+   newgrp docker
+   ```
+   To verify whether you have correct configuration, try executing `docker ps` command. You should not get `permission denied` errors.
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+2. Navigate to the corresponding workflow directory that you have chosen.
 
-## Key concepts
+3. Create the Python virtual environment using the environment.yml:
+   ```
+   conda env create -f environment.yml
+   ```
+4. Activate the virtual environment:
+   ```
+   source activate deployment_env
+   ```
+5. Login to Azure:
+   ```
+   az login
+   ```
+6. If you have more than one Azure subscription, select it:
+   ```
+   az account set --subscription <Your Azure Subscription>
+   ```
+7. Start the Jupyter notebook server in the virtual environment:
+   ```
+   jupyter notebook
+   ```
+8. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
 
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
+9. After following the setup instructions above, run the Jupyter notebooks in the order of `01`,`02`,`03`... in the chosen workflow.
+
+
+
+## Reference
+[Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+
 
 ## Contributing
 
