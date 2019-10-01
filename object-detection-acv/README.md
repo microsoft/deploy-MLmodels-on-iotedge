@@ -1,10 +1,15 @@
-# People Detection on Azure IoT Edge
+# People Detection on Azure IoT Edge with Azure Custom Vision
 
-In this tutorial, we introduce how to deploy a people detection service on [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/how-iot-edge-works). 
+In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge with Azure Custom Vision (ACV) service.
 
 Azure IoT Edge is an Internet of Things (IoT) service that builds on top of Azure IoT Hub. It is a hybrid solution combining the benefits of the two scenarios: *IoT in the Cloud* and *IoT on the Edge*. This service is meant for customers who want to analyze data on devices, a.k.a. "at the edge", instead of in the cloud. By moving parts of your workload to the edge, your devices can spend less time sending messages to the cloud and react more quickly to changes in status. On the other hand, Azure IoT Hub provides centralized way to manage Azure IoT Edge devices, and make it easy to train ML models in the Cloud and deploy the trained models on the Edge devices.  
 
-In this example, we deploy a trained Keras (Tensorflow) CNN model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
+In this example, we deploy a pre-trained object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
+
+Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy two modules on IoT Edge. These two modules are `ImageCaptureOD`, `PeopleDetectionService`, the source code of whichcan be found at [./modules](./modules). `PeopleDetectionService` contains a trained model together with other driver files exported from [ACV service] (https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home). User only need to provide a set of tagged custom images and the ACV service will train the object detection model in the backend. When satisfied with the model performance, user can export the trained model into a preferred format and deploy it at user's choice. In this workflow, we export the trained model from ACV service and unzip it into `PeopleDetectionService` directory. `ImageCaptureOD` is a module that accepts a video footage as input, breakdown video into frames, send each frame to `PeopleDetectionService` module, receive output from `PeopleDetectionService` module, annotated each frame, display annotated frames as a video footagle in the web browser. This module is modified based on this [sample tutorial](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/). When deployed, `PeopleDetectionService` module takes a video frame supplied from from `ImageCaptureOD` module and output the predicted objects with their prediction probability and bounding box corrodinates.
+
+
+Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
 
 <p align="center">
 <img src="https://happypathspublic.blob.core.windows.net/aksdeploymenttutorialaml/azureiotedgeruntime.png" alt="logo" width="90%"/>
@@ -17,7 +22,7 @@ We perform following steps for the deployment.
 - Step 3: Build and register two docker images in ACR. These images will be used to create two docker containers (modules) running on the edge device. 
 - Step 4: Deploy two modules on IoT Edge Device.
 - Step 5: Test the people-detector-service Module.
-- Step 6: Tear it all down.
+- Step 6: Tear down Azure resources and clean up edge device.
 
 
 To get started with the tutorial, please proceed with following steps **in sequential order**.
@@ -28,10 +33,10 @@ To get started with the tutorial, please proceed with following steps **in seque
 
 <a id='prerequisites'></a>
 ## Prerequisites
-1. Linux (x64) with GPU enabled.
+1. Linux (x64) 
 2. [Anaconda Python](https://www.anaconda.com/download)
-3. [Docker](https://docs.docker.com/v17.12/install/linux/docker-ee/ubuntu) installed.
-4. [Azure account](https://azure.microsoft.com).
+3. [Docker](https://docs.docker.com/v17.12/install/linux/docker-ee/ubuntu) installed
+4. [Azure account](https://azure.microsoft.com)
 
 The tutorial was developed on an [Azure Ubuntu
 DSVM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro),
@@ -61,21 +66,21 @@ Please follow these steps to set up your environment and run notebooks.  They se
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
 ```python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
 ```
-5. Login to Azure:
+6. Login to Azure:
    ```
    az login
    ```
-6. If you have more than one Azure subscription, select it:
+7. If you have more than one Azure subscription, select it:
    ```
    az account set --subscription <Your Azure Subscription>
    ```
-7. Start the Jupyter notebook server in the virtual environment:
+8. Start the Jupyter notebook server in the virtual environment:
    ```
    jupyter notebook
    ```
-8. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
 
-9. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
+10. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
 
 <a id='cleanup'></a>
 ## Cleaning up
@@ -83,7 +88,10 @@ To remove the conda environment created see [here](https://conda.io/projects/con
 
 
 ## Reference
+[Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/how-iot-edge-works)
+[Understand Azure IoT Edge modules](https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-modules)
 [Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+[Azure Custom Vision service](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home)
 
 # Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a

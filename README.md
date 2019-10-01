@@ -7,9 +7,9 @@ The table below lists the workflow options currently available in the repository
 
 Workflow| Task | Model Built Environment | IoT Edge Device | Description | Notes|
 | --- | --- | --- | --- | --- | --- |
-[wf1](./object-detection-azureml)| Object Detection | Azure Machine Learning | Ubuntu VM | Pytorch, pretrained MaskRCNN model | |
-[wf2](./object-detection-acv)| Object Detection | Azure Custom Vision service | Ubuntu VM | Tensorflow, pretrained model, fine-tuned with 50 custom images| |
-[wf3](./object-detection-acv-dbe)| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images |Make sure p2 works first then try p3 with the same model.|
+[wf1](./object-detection-azureml)| Object Detection | Azure Machine Learning | [Ubuntu VM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro) | Pytorch, pretrained [MaskRCNN model](https://pytorch.org/blog/torchvision03/) | |
+[wf2](./object-detection-acv)| Object Detection | Azure Custom Vision service | [Ubuntu VM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro) | Tensorflow, pretrained model, fine-tuned with 50 custom images| |
+[wf3](./object-detection-acv-dbe)| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images |Make sure p2 works first then try wf2 with the same model.|
 
 The notebooks in each workflow directory is organized with six steps, which are illustrated in following digram.  
 ![workflow diagram](./workflow_diagram.png). 
@@ -55,26 +55,32 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
    source activate deployment_env
    ```
-5. Login to Azure:
+5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
+```python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
+
+6. Login to Azure:
    ```
    az login
    ```
-6. If you have more than one Azure subscription, select it:
+7. If you have more than one Azure subscription, select it:
    ```
    az account set --subscription <Your Azure Subscription>
    ```
-7. Start the Jupyter notebook server in the virtual environment:
+8. Start the Jupyter notebook server in the virtual environment:
    ```
    jupyter notebook
    ```
-8. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
 
-9. After following the setup instructions above, run the Jupyter notebooks in the order of `01`,`02`,`03`... in the chosen workflow.
+10. After following the setup instructions above, run the Jupyter notebooks in the order of `01`,`02`,`03`... in the chosen workflow.
 
 
 
 ## Reference
+[Azure Machine Learning service](https://docs.microsoft.com/en-us/azure/machine-learning/service/overview-what-is-azure-ml)
+[Azure Custom Vision service](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home)
 [Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+
 
 
 ## Contributing

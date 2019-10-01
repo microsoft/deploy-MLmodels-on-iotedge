@@ -1,10 +1,14 @@
-# People Detection on Azure IoT Edge
+# People Detection on Azure IoT Edge with AzureML
 
-In this tutorial, we introduce how to deploy a people detection service on [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/how-iot-edge-works). 
+In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge using Azure Machine Learning (AzureML) service. 
 
 Azure IoT Edge is an Internet of Things (IoT) service that builds on top of Azure IoT Hub. It is a hybrid solution combining the benefits of the two scenarios: *IoT in the Cloud* and *IoT on the Edge*. This service is meant for customers who want to analyze data on devices, a.k.a. "at the edge", instead of in the cloud. By moving parts of your workload to the edge, your devices can spend less time sending messages to the cloud and react more quickly to changes in status. On the other hand, Azure IoT Hub provides centralized way to manage Azure IoT Edge devices, and make it easy to train ML models in the Cloud and deploy the trained models on the Edge devices.  
 
-In this example, we deploy a trained Keras (Tensorflow) CNN model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
+In this example, we deploy a pre-trained MaskRCNN (Pytorch) object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
+
+Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy one module - the `people-detector-service` module on IoT Edge. The model file and other required driver files will be generated when running [031_RegisterModel.ipynb](./031_RegisterModel.ipynb) and [032_DevelopModelDriver.ipynb](032_DevelopModelDriver.ipynb) notebooks.
+
+Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
 
 <p align="center">
 <img src="https://happypathspublic.blob.core.windows.net/aksdeploymenttutorialaml/azureiotedgeruntime.png" alt="logo" width="90%"/>
@@ -14,10 +18,10 @@ We perform following steps for the deployment.
 
 - Step 1: Create Azure resources including IoT Hub, IoT Edge identity, AzureML workspace, etc.
 - Step 2: Provision and Configure IoT Edge Device.
-- Step 3: Develop an ML model, register it in Azure Container Service (ACR) and build it into a docker image through Azure ML. This docker image will be used to create a docker container (module) running on the edge device. 
+- Step 3: Develop an ML model, register it in Azure Container Service (ACR) and build it into a docker image through AzureML. This docker image will be used to create a docker container (module) running on the edge device. 
 - Step 4: Deploy the ML module on IoT Edge Device.
-- Step 5: Test the people-detector-service Module.
-- Step 6: Tear it all down.
+- Step 5: Test the `people-detector-service` Module.
+- Step 6: Tear down Azure resources and clean up the edge device.
 
 
 To get started with the tutorial, please proceed with following steps **in sequential order**.
@@ -83,7 +87,9 @@ To remove the conda environment created see [here](https://conda.io/projects/con
 
 
 ## Reference
-[Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+[Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/how-iot-edge-works)
+[Understand Azure IoT Edge modules](https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-modules)
+[Azure Machine Learning service](https://docs.microsoft.com/en-us/azure/machine-learning/service/overview-what-is-azure-ml)
 
 # Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
