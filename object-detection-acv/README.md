@@ -2,18 +2,10 @@
 
 In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge with Azure Custom Vision (ACV) service.
 
-Azure IoT Edge is an Internet of Things (IoT) service that builds on top of Azure IoT Hub. It is a hybrid solution combining the benefits of the two scenarios: *IoT in the Cloud* and *IoT on the Edge*. This service is meant for customers who want to analyze data on devices, a.k.a. "at the edge", instead of in the cloud. By moving parts of your workload to the edge, your devices can spend less time sending messages to the cloud and react more quickly to changes in status. On the other hand, Azure IoT Hub provides centralized way to manage Azure IoT Edge devices, and make it easy to train ML models in the Cloud and deploy the trained models on the Edge devices.  
-
 In this example, we deploy a pre-trained object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
 
 Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy two modules on IoT Edge. These two modules are `ImageCaptureOD`, `PeopleDetectionService`, the source code of whichcan be found at [./modules](./modules). `PeopleDetectionService` contains a trained model together with other driver files exported from [ACV service] (https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home). User only need to provide a set of tagged custom images and the ACV service will train the object detection model in the backend. When satisfied with the model performance, user can export the trained model into a preferred format and deploy it at user's choice. In this workflow, we export the trained model from ACV service and unzip it into `PeopleDetectionService` directory. `ImageCaptureOD` is a module that accepts a video footage as input, breakdown video into frames, send each frame to `PeopleDetectionService` module, receive output from `PeopleDetectionService` module, annotated each frame, display annotated frames as a video footagle in the web browser. This module is modified based on this [sample tutorial](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/). When deployed, `PeopleDetectionService` module takes a video frame supplied from from `ImageCaptureOD` module and output the predicted objects with their prediction probability and bounding box corrodinates.
 
-
-Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
-
-<p align="center">
-<img src="https://happypathspublic.blob.core.windows.net/aksdeploymenttutorialaml/azureiotedgeruntime.png" alt="logo" width="90%"/>
-</p>
 
 We perform following steps for the deployment.
 
