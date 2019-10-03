@@ -2,7 +2,7 @@
 
 In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge with Azure Custom Vision (ACV) service. Specifically the physical IoT Edge device is a Data Box Edge (DBE) device.
 
-**This tutorial is exactly the same as [tutorial: object-detection-acv](../object-detection-acv), except in which the physical IoT Edge device is a Ubuntu VM. We strongly suggest user to ensure the deployment works on Ubuntu VM before trying out deploying on DBE device, because the debugging and troubleshooting are more convenient on the VM. Once the deployment is succesfull on the VM, please use the same `modules` folder in this directory.**
+**This tutorial is exactly the same as [tutorial: object-detection-acv](../object-detection-acv), except in which the physical IoT Edge device is a Ubuntu VM. We strongly suggest user to ensure the deployment working on Ubuntu VM before trying out deploying on DBE device, because the debugging and troubleshooting are more convenient on the VM. Once the deployment is successful on the VM, please use the same `modules` folder for deployment on DBE as well.**
 
 In this example, we deploy a pre-trained object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
 
