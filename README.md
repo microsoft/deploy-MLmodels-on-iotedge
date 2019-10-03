@@ -2,7 +2,7 @@
 
 This repository contains examples and best practices for deploying machine learning (ML) models on Azure IoT Edge, provided as Jupyter notebooks. 
 
-This topic leverages Artificial Intelligence (AI), Internet of Things (IoT), and Azure IoT Edge. Existing tutorials such as [Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/) are mainly from the perspective of IoT or Edge, where the IoT pipeline and IoT Edge management are the focus. In this tutorial, we shift the focus to the data science and the AI/ML model. We dig deeper on two aspects: where the model is built and what is the IoT Edge device for deployment.  
+This topic leverages Artificial Intelligence (AI), Internet of Things (IoT), and Azure IoT Edge. Existing tutorials are mainly from the perspective of IoT or Edge, where the IoT pipeline and IoT Edge management are key components. In this tutorial, we shift the focus to the data science and the AI/ML model. We dig deeper on two aspects: where and how the ML model is built and what is the IoT Edge device for deployment.  
 
 
 The table below lists the workflow options currently available in the repository. Notebooks are linked under the `Workflow` column when different implementations are available.
@@ -101,7 +101,7 @@ Please follow these steps to set up your environment and run notebooks.  They se
 - [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/how-iot-edge-works)
 - [Azure IoT Edge runtime](https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-runtime) 
 - [Azure IoT Edge supported systems](https://docs.microsoft.com/en-us/azure/iot-edge/support)
-- [Sample - Custom Vision + Azure IoT Edge](https://azure.microsoft.com/en-us/resources/samples/custom-vision-service-iot-edge-raspberry-pi/)
+
 
 
 
