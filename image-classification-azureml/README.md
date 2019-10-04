@@ -1,8 +1,8 @@
-# Object Detection on Azure IoT Edge with AzureML
+# Image Classification on Azure IoT Edge with AzureML
 
 In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge using Azure Machine Learning (AzureML) service. Specifically, the physical IoT Edge device is a Ubuntu VM, which is the same host server this repository is downloaded to.
 
-We deploy a pre-trained MaskRCNN (Pytorch) object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
+We deploy a trained Keras (Tensorflow) CNN model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
 
 Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy one module - the `people-detector-service` module on IoT Edge. The model file and other required driver files will be generated when running [031_DevAndRegisterModel.ipynb](./031_DevAndRegisterModel.ipynb) and [032_DevelopModelDriver.ipynb](032_DevelopModelDriver.ipynb) notebooks.
 
