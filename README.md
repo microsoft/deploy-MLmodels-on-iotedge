@@ -38,59 +38,9 @@ Following diagram shows the major components of an Azure IoT edge device.
 </p>
 
 
-## Prerequisites
+## Next Steps
 
-1. Linux (x64) 
-2. [Anaconda Python](https://www.anaconda.com/download)
-3. [Docker](https://docs.docker.com/v17.12/install/linux/docker-ee/ubuntu) installed
-4. [Azure account](https://azure.microsoft.com)
-
-The tutorial was developed on an [Azure Ubuntu
-DSVM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro),
-which addresses the first three prerequisites.
-
-## Setup
-
-Please follow these steps to set up your environment and run notebooks.  They setup the notebooks to use Docker and Azure seamlessly.
-
-1. Add your user to the docker group: 
-   ```
-   sudo usermod -aG docker $USER
-   newgrp docker
-   ```
-   To verify whether you have correct configuration, try executing `docker ps` command. You should not get `permission denied` errors.
-
-2. Navigate to the corresponding workflow directory that you have chosen.
-
-3. Create the Python virtual environment using the environment.yml:
-   ```
-   conda env create -f environment.yml
-   ```
-4. Activate the virtual environment:
-   ```
-   source activate deployment_env
-   ```
-5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
-```python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
-```
-6. Login to Azure:
-   ```
-   az login
-   ```
-7. If you have more than one Azure subscription, select it:
-   ```
-   az account set --subscription <Your Azure Subscription>
-   ```
-8. Start the Jupyter notebook server in the virtual environment:
-   ```
-   jupyter notebook
-   ```
-9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
-
-10. After following the setup instructions above, run the Jupyter notebooks in the order of `01`,`02`,`03`... in the chosen workflow.
-
-
-
+Please navigate to tutorials: [wf1](./image-classification-azureml),[wf2](./object-detection-azureml),[wf3](./object-detection-acv), or [wf4](./object-detection-acv-dbe) to find out prerequisites and setup instructions.
 
 
 
