@@ -55,23 +55,24 @@ Please follow these steps to set up your environment and run notebooks.  They se
    source activate deployment_aml
    ```
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
-```python -m ipykernel install --user --name deployment_aml --display-name "Python (deployment_aml)"
-```
-5. Login to Azure:
+   ```
+   python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
+   ```
+6. Login to Azure:
    ```
    az login
    ```
-6. If you have more than one Azure subscription, select it:
+7. If you have more than one Azure subscription, select it:
    ```
    az account set --subscription <Your Azure Subscription>
    ```
-7. Start the Jupyter notebook server in the virtual environment:
+8. Start the Jupyter notebook server in the virtual environment:
    ```
    jupyter notebook
    ```
-8. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
 
-9. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
+10. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
 
 <a id='cleanup'></a>
 ## Cleaning up

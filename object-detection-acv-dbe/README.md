@@ -58,8 +58,9 @@ Please follow these steps to set up your environment and run notebooks.  They se
    source activate deployment_env
    ```
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
-```python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
-```
+   ```
+   python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
+   ```
 6. Login to Azure:
    ```
    az login
