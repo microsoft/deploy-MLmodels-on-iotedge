@@ -1,0 +1,15 @@
+# Fill in the fields below and rename to .dev_env
+# TENANT_ID, SP_USERNAME and SP_PASSWORD are optional. If not supplied Azure cli will default to interactive login
+TENANT_ID=
+SP_USERNAME=
+SP_PASSWORD=
+SUBSCRIPTION_ID="my-azure-sub-id"
+RESOURCE_GROUP="myedgedeployrg"
+WORKSPACE_NAME="workspace"
+WORKSPACE_REGION="eastus"
+IMAGE_NAME = "img4mlmodel"
+IOT_HUB_NAME = "myiothub12321unique"
+DEVICE_ID = "gpudevice"
+IMAGE1_NAME="img1"
+MODULE1_NAME = "module1"
+
