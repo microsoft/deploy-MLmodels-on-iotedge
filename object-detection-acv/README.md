@@ -61,7 +61,7 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
 6. Login to Azure:
    ```
-   az login
+   az login --use-device-code
    ```
 7. If you have more than one Azure subscription, select it:
    ```
