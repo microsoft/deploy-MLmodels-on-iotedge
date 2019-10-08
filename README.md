@@ -9,8 +9,8 @@ The table below lists the workflow options currently available in the repository
 
 Workflow| Task | Model Built Environment | IoT Edge Device | Description | Notes|
 | --- | --- | --- | --- | --- | --- |
-[wf1](./image-classification-azureml)| Image Classification | Azure Machine Learning | Ubuntu VM | Keras (Tensorflow), pretrained ResNet152 model | |
-[wf2](./object-detection-azureml)| Object Detection | Azure Machine Learning | Ubuntu VM | Pytorch, pretrained [MaskRCNN model](https://pytorch.org/blog/torchvision03/) | |
+[wf1](./image-classification-azureml)| Image Classification | Azure Machine Learning | Ubuntu VM (GPU) | Keras (Tensorflow), pretrained ResNet152 model | |
+[wf2](./object-detection-azureml)| Object Detection | Azure Machine Learning | Ubuntu VM (GPU) | Pytorch, pretrained [MaskRCNN model](https://pytorch.org/blog/torchvision03/) | |
 [wf3](./object-detection-acv)| Object Detection | Azure Custom Vision service | Ubuntu VM | Tensorflow, pretrained model, fine-tuned with 50 custom images| |
 [wf4](./object-detection-acv-dbe)| Object Detection | Azure Custom Vision service | Data Box Edge (DBE) | Tensorflow, pretrained model, fine-tuned with 50 custom images |Make sure wf3 works first then try wf4 with the same model.|
 
