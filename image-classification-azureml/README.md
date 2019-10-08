@@ -52,7 +52,7 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
 4. Activate the virtual environment:
    ```
-   source activate deployment_aml
+   source activate deployment_env
    ```
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
    ```
