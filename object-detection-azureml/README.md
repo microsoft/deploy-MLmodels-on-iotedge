@@ -70,7 +70,7 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
    jupyter notebook
    ```
-9. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
 
 10. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
 
