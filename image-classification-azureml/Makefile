@@ -98,9 +98,7 @@ test-notebook4:
 	papermill 04_DeployOnIOTedge.ipynb out_04_DeployOnIOTedge.ipynb \
 		--log-output \
 		--no-progress-bar \
-		-k python3 \
-    -p module1_name ${MODULE1_NAME} \
-    -p module2_name ${MODULE2_NAME}
+		-k python3 
 
 test-notebook5:
 	source activate deployment_env
