@@ -11,5 +11,4 @@ IMAGE_NAME = "img4mlmodel"
 IOT_HUB_NAME = "myiothub12321unique"
 DEVICE_ID = "gpudevice"
 IMAGE1_NAME="img1"
-MODULE1_NAME = "module1"
 
