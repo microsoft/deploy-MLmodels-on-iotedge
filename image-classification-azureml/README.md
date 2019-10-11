@@ -1,5 +1,5 @@
 ### Coming soon. 
-Thanks for your interest of tyring out this tutorial! You have two options to explore further. 
+Thanks for your interest of trying out this tutorial! You have two options to explore further. 
 
 First (the version tested working), you can find out the same material but differently organized at
 https://github.com/microsoft/AKSDeploymentTutorialAML/tree/master/%7B%7Bcookiecutter.project_name%7D%7D/Keras_Tensorflow/iotedge
