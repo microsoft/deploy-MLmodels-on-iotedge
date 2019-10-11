@@ -1,10 +1,10 @@
-# People Detection on Azure IoT Edge with AzureML
+# Object Detection on Azure IoT Edge with AzureML
 
 In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge using Azure Machine Learning (AzureML) service. Specifically, the physical IoT Edge device is a Ubuntu VM, which is the same host server this repository is downloaded to.
 
 We deploy a pre-trained MaskRCNN (Pytorch) object detection model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. 
 
-Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy one module - the `people-detector-service` module on IoT Edge. The model file and other required driver files will be generated when running [031_RegisterModel.ipynb](./031_RegisterModel.ipynb) and [032_DevelopModelDriver.ipynb](032_DevelopModelDriver.ipynb) notebooks.
+Azure IoT Edge enables user to deploy and manage business logic on the edge in the form of `modules`. Any business logic, including trained machine learning model, need to be built into a docker image. When deployed, each running docker container is called a `module`. In this workflow, we deploy one module - the `people-detector-service` module on IoT Edge. The model file and other required driver files will be generated when running [031_DevAndRegisterModel.ipynb](./031_DevAndRegisterModel.ipynb) and [032_DevelopModelDriver.ipynb](032_DevelopModelDriver.ipynb) notebooks.
 
 We perform following steps for the deployment.
 
@@ -12,7 +12,7 @@ We perform following steps for the deployment.
 - Step 2: Provision and Configure IoT Edge Device.
 - Step 3: Develop an ML model, register it in Azure Container Service (ACR) and build it into a docker image through AzureML. This docker image will be used to create a docker container (module) running on the edge device. 
 - Step 4: Deploy the ML module on IoT Edge Device.
-- Step 5: Test the `people-detector-service` Module.
+- Step 5: Test the deployed ML Module.
 - Step 6: Tear down Azure resources and clean up the edge device.
 
 
@@ -52,26 +52,27 @@ Please follow these steps to set up your environment and run notebooks.  They se
    ```
 4. Activate the virtual environment:
    ```
-   source activate deployment_aml
+   source activate deployment_env
    ```
 5. Register the created conda environment to appear as a kernel in the Jupyter notebooks.
-```python -m ipykernel install --user --name deployment_aml --display-name "Python (deployment_aml)"
-```
-5. Login to Azure:
    ```
-   az login
+   python -m ipykernel install --user --name deployment_env --display-name "Python (deployment_env)"
    ```
-6. If you have more than one Azure subscription, select it:
+6. Login to Azure:
+   ```
+   az login --use-device-code
+   ```
+7. If you have more than one Azure subscription, select it:
    ```
    az account set --subscription <Your Azure Subscription>
    ```
-7. Start the Jupyter notebook server in the virtual environment:
+8. Start the Jupyter notebook server in the virtual environment:
    ```
    jupyter notebook
    ```
-8. Select correct kernel: set the kernel to be `Python [conda env: deployment_aml]`(or `Python 3` if that option does not show).
+9. Select correct kernel: set the kernel to be `Python [conda env: deployment_env]`(or `Python 3` if that option does not show).
 
-9. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
+10. After following the setup instructions above, run the Jupyter notebooks in order starting with the first notebook [01_AzureSetup.ipynb](./01_AzureSetup.ipynb).
 
 <a id='cleanup'></a>
 ## Cleaning up

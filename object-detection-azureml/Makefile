@@ -60,8 +60,8 @@ test-notebook2:
 
 test-notebook31:
 	source activate deployment_env
-	@echo 031_DevelopModel.ipynb
-	papermill 031_DevelopModel.ipynb out_031_DevelopModel.ipynb \
+	@echo 031_DevAndRegisterModel.ipynb
+	papermill 031_DevAndRegisterModel.ipynb out_031_DevAndRegisterModel.ipynb \
 		--log-output \
 		--no-progress-bar \
 		-k python3 
@@ -98,14 +98,12 @@ test-notebook4:
 	papermill 04_DeployOnIOTedge.ipynb out_04_DeployOnIOTedge.ipynb \
 		--log-output \
 		--no-progress-bar \
-		-k python3 \
-    -p module1_name ${MODULE1_NAME} \
-    -p module2_name ${MODULE2_NAME}
+		-k python3 
 
 test-notebook5:
 	source activate deployment_env
-	@echo 05_TestPeopleDetectionModule.ipynb
-	papermill 05_TestPeopleDetectionModule.ipynb out_05_TestPeopleDetectionModule.ipynb \
+	@echo 05_TestMLModule.ipynb
+	papermill 05_TestMLModule.ipynb out_05_TestMLModule.ipynb \
 		--log-output \
 		--no-progress-bar \
 		-k python3 
