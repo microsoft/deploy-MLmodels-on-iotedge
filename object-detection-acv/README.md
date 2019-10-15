@@ -1,4 +1,4 @@
-# People Detection on Azure IoT Edge with Azure Custom Vision
+# Object Detection on Azure IoT Edge with Azure Custom Vision
 
 In this tutorial, we introduce how to deploy a people detection service on Azure IoT Edge with Azure Custom Vision (ACV) service. Specifically the physical IoT Edge device is a Ubuntu VM, which is the same host server this repository is downloaded to.
 
